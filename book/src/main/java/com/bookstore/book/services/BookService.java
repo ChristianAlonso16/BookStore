@@ -4,6 +4,8 @@ import com.bookstore.book.model.book.Book;
 import com.bookstore.book.model.book.BookRepository;
 import com.bookstore.book.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,9 @@ import java.util.Optional;
 public class BookService {
     @Autowired
     BookRepository bookRepository;
-    public ResponseEntity<CustomResponse> getAll() {
+    public Page<Book> getAll(Pageable page) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(new CustomResponse(this.bookRepository.findAll(),false,200,"OK"));
+        return bookRepository.findAll(page);
     }
     public ResponseEntity<CustomResponse> insert(Book book){
 
