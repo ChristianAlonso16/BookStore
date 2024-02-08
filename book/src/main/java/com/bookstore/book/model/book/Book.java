@@ -1,6 +1,7 @@
 package com.bookstore.book.model.book;
 
 import com.bookstore.book.model.category.Category;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Book {
     @Column(name="autor")
     private  String autor;
     @Column(name = "created_at")
+    @JsonFormat(pattern="yyyy")
     private Date año;
     @ManyToOne
     @JoinColumn(name = "fk_category")
