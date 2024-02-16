@@ -35,6 +35,27 @@ public class BookService {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new CustomResponse(bookRepository.save(book), false, HttpStatus.CREATED.value(), "Libro registrado"));
     }
+    public ResponseEntity<CustomResponse> update(Book book){
+
+        Optional<Book> exist = bookRepository.findById(book.getId());
+        if(!exist.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new CustomResponse(null, true, HttpStatus.NOT_FOUND.value(), "Libro invalido"));
+        }
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new CustomResponse(bookRepository.saveAndFlush(book), false, HttpStatus.CREATED.value(), "Libro actualizado"));
+    }
+    public ResponseEntity<CustomResponse> deleteOne(Integer id){
+
+        Optional<Book> exist = bookRepository.findById(id);
+        if(!exist.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new CustomResponse(null, true, HttpStatus.NOT_FOUND.value(), "Libro invalido"));
+        }
+        bookRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new CustomResponse(null, false, HttpStatus.CREATED.value(), "Libro eliminado"));
+    }
     public ResponseEntity<CustomResponse> findByCategory(String category){
         boolean existCategory = categoryRepository.existsByName(category);
         if (!existCategory) {

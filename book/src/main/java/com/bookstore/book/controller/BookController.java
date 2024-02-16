@@ -24,6 +24,14 @@ public class BookController {
     public List<Book> getAll(){
         return bookService.getAll();
     }
+    @PostMapping(value = "/update", produces = "application/json")
+    public ResponseEntity<CustomResponse> update(@RequestBody Book book){
+        return bookService.update(book);
+    }
+    @PostMapping(value = "/delete", produces = "application/json")
+    public ResponseEntity<CustomResponse> delete(@RequestBody Integer id){
+        return bookService.deleteOne(id);
+    }
     @GetMapping(value = "/category/{name}",produces = "application/json")
     public ResponseEntity<CustomResponse> getBookByCategory(@PathVariable("name") String name){
         return bookService.findByCategory(name);
