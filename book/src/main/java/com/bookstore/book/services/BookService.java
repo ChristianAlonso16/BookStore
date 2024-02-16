@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,9 +22,8 @@ public class BookService {
     BookRepository bookRepository;
     @Autowired
     CategoryRepository categoryRepository;
-    public Page<Book> getAll(Pageable page) {
-
-        return bookRepository.findAll(page);
+    public List<Book> getAll() {
+        return bookRepository.findAll();
     }
     public ResponseEntity<CustomResponse> insert(Book book){
 
