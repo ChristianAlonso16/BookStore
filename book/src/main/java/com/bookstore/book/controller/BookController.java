@@ -24,4 +24,8 @@ public class BookController {
     public Page<Book> getAll(Pageable page){
         return bookService.getAll(page);
     }
+    @GetMapping(value = "/category/{name}",produces = "application/json")
+    public ResponseEntity<CustomResponse> getBookByCategory(@PathVariable("name") String name){
+        return bookService.findByCategory(name);
+    }
 }
