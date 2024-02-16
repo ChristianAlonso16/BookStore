@@ -1,7 +1,7 @@
-package com.bookstore.book.controller;
+package com.bookstore.book.controller.book;
 
 import com.bookstore.book.model.book.Book;
-import com.bookstore.book.services.BookService;
+import com.bookstore.book.services.book.BookService;
 import com.bookstore.book.utils.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

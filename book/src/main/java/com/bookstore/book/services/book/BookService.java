@@ -1,4 +1,4 @@
-package com.bookstore.book.services;
+package com.bookstore.book.services.book;
 
 import com.bookstore.book.model.book.Book;
 import com.bookstore.book.model.book.BookRepository;
