@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,5 +36,21 @@ public class BookController {
     @GetMapping(value = "/category/{name}",produces = "application/json")
     public ResponseEntity<CustomResponse> getBookByCategory(@PathVariable("name") String name){
         return bookService.findByCategory(name);
+    }
+    @PostMapping(value = "/name",produces = "application/json")
+    public ResponseEntity<CustomResponse> getBookByName(@RequestBody String name){
+        return bookService.findByName(name);
+    }
+    @PostMapping(value = "/autor",produces = "application/json")
+    public ResponseEntity<CustomResponse> getBookByAutor(@RequestBody String autor){
+        return bookService.findByAutor(autor);
+    }
+    @PostMapping(value = "/dates",produces = "application/json")
+    public ResponseEntity<CustomResponse> getBookByDates(@RequestBody Date start,Date end){
+        return bookService.findByDates(start,end);
+    }
+    @GetMapping(value = "/dateDesc",produces = "application/json")
+    public ResponseEntity<CustomResponse> getBookByDateDesc(){
+        return bookService.findBooksByDateDesc();
     }
 }
