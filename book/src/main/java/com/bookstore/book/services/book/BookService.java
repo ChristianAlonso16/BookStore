@@ -61,7 +61,7 @@ public class BookService {
       return ResponseEntity.status(HttpStatus.OK).body(new CustomResponse(bookRepository.findBookByCategory_Name(category),false,HttpStatus.OK.value(), "Libros de categoria "+category));
     }
     public ResponseEntity<CustomResponse> findByName(String name){
-        List<Book> exist = bookRepository.findByNombreContaining(name);
+        List<Book> exist = bookRepository.findByNameContaining(name);
         if (exist.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new CustomResponse(null, true, HttpStatus.NOT_FOUND.value(), "No hay concidencias de busqueda en el nombre de los libros"));
         }
@@ -75,14 +75,14 @@ public class BookService {
         return ResponseEntity.status(HttpStatus.OK).body(new CustomResponse(existAutor,false,HttpStatus.OK.value(), "Libros con coincidencia de autor "+autor));
     }
     public ResponseEntity<CustomResponse> findByDates(Date start, Date end){
-        List<Book> existBooks = bookRepository.findByFechaPublicacionBetween(start,end);
+        List<Book> existBooks = bookRepository.findByAñoBetween(start,end);
         if (existBooks.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new CustomResponse(null, true, HttpStatus.NOT_FOUND.value(), "No hay concidencias de busqueda con las fechas"));
         }
         return ResponseEntity.status(HttpStatus.OK).body(new CustomResponse(existBooks,false,HttpStatus.OK.value(), "Libros con coincidencia de fechas"));
     }
     public ResponseEntity<CustomResponse> findBooksByDateDesc(){
-        List<Book> bookList = bookRepository.findByOrderByFechaPublicacionDesc();
+        List<Book> bookList = bookRepository.findByOrderByAñoDesc();
         if (bookList.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new CustomResponse(null, true, HttpStatus.NOT_FOUND.value(), "No hay libros registrados"));
         }

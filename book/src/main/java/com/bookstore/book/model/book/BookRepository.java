@@ -10,8 +10,8 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
     Optional<Book> findByName(String name);
     List<Book> findByAutorContaining(String autor);
     List<Book> findBookByCategory_Name(String categoria);
-    List<Book> findByFechaPublicacionBetween(Date fechaInicio, Date fechaFin);
-    List<Book> findByOrderByFechaPublicacionDesc();
-    List<Book> findByNombreContaining(String nombre);
+    List<Book> findByAñoBetween(Date fechaInicio, Date fechaFin);
+    List<Book> findByOrderByAñoDesc();
+    List<Book> findByNameContaining(String nombre);
 
 }
